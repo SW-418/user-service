@@ -26,6 +26,11 @@ flyway {
 }
 
 configurations {
+	all {
+		// Exclude default logger (Logback) - This is included in base starter and web starter
+		exclude(module = "spring-boot-starter-logging")
+		exclude(module = "logback-classic")
+	}
 	compileOnly {
 		extendsFrom(configurations.annotationProcessor.get())
 	}
@@ -40,12 +45,21 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	// Logging - Use SL4J wrapper over the Log4J2 implementation
+	implementation("org.slf4j:slf4j-api:2.0.17")
+	implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.25.0")
+	implementation("org.apache.logging.log4j:log4j-api:2.25.0")
+	implementation("org.apache.logging.log4j:log4j-core:2.25.0")
+
+	// DB
 	implementation("org.flywaydb:flyway-database-postgresql")
 	implementation("org.postgresql:postgresql:42.7.7")
+	implementation("com.h2database:h2")
+
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-	testRuntimeOnly("com.h2database:h2")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
