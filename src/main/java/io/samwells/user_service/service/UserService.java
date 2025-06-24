@@ -1,9 +1,6 @@
 package io.samwells.user_service.service;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,8 +11,6 @@ import io.samwells.user_service.exception.UserAlreadyExistsException;
 import io.samwells.user_service.repository.UserRepository;
 import io.samwells.user_service.entity.User;
 
-import java.util.List;
-
 @Service
 public class UserService implements UserDetailsManager {
     private final UserRepository userRepository;
@@ -24,10 +19,6 @@ public class UserService implements UserDetailsManager {
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    public List<User> findAll() {
-        return userRepository.findAll(PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "id"))).getContent();
     }
 
     @Override
