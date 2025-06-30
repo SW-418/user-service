@@ -4,7 +4,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.3"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.flywaydb.flyway") version "11.9.1"
+	id("org.flywaydb.flyway") version "11.10.0"
 }
 
 group = "io.samwells"
