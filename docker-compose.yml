@@ -5,6 +5,8 @@ services:
             - "8080:8080"
         depends_on:
             - postgres
+        environment:
+            USER_SVC_JWT_SECRET: ${USER_SVC_JWT_SECRET}
     postgres:
         image: postgres:15-alpine
         container_name: postgres

@@ -4,7 +4,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.5.3"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.flywaydb.flyway") version "11.9.1"
+	id("org.flywaydb.flyway") version "9.22.3"
 }
 
 group = "io.samwells"
@@ -23,6 +23,8 @@ flyway {
     locations = arrayOf("classpath:db/migration")
     baselineOnMigrate = true
     validateOnMigrate = true
+	validateMigrationNaming = true
+	driver = "org.postgresql.Driver"
 }
 
 configurations {
@@ -53,9 +55,14 @@ dependencies {
 	implementation("org.apache.logging.log4j:log4j-core:2.25.0")
 
 	// DB
-	implementation("org.flywaydb:flyway-database-postgresql")
+	implementation("org.flywaydb:flyway-core")
 	implementation("org.postgresql:postgresql:42.7.7")
 	implementation("com.h2database:h2")
+
+	// JWTs
+	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
+	implementation("io.jsonwebtoken:jjwt-impl:0.12.6")
+	implementation("io.jsonwebtoken:jjwt-jackson:0.12.6")
 
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
