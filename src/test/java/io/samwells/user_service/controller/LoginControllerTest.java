@@ -1,7 +1,8 @@
 package io.samwells.user_service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.samwells.user_service.dto.UserAuthRequest;
+
+import io.samwells.user_service.dto.request.UserAuthRequest;
 import io.samwells.user_service.entity.User;
 import io.samwells.user_service.repository.UserRepository;
 import jakarta.transaction.Transactional;
