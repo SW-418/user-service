@@ -13,13 +13,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import io.samwells.user_service.security.JwtAuthenticationFilter;
+import io.samwells.user_service.utils.JWTUtils;
+import io.samwells.user_service.service.ExtendedUserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http.csrf(CsrfConfigurer::disable);
 
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
@@ -30,8 +35,14 @@ public class SecurityConfig {
         );
 
         http.httpBasic(Customizer.withDefaults());
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         
         return http.build();
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(JWTUtils jwtUtils, ExtendedUserService extendedUserService) {
+        return new JwtAuthenticationFilter(jwtUtils, extendedUserService);
     }
 
     @Bean
