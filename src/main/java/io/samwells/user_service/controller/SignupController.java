@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import io.samwells.user_service.dto.UserAuthRequest;
 import org.springframework.security.provisioning.UserDetailsManager;
+
+import io.samwells.user_service.dto.request.UserAuthRequest;
 import io.samwells.user_service.entity.User;
 
 @RestController

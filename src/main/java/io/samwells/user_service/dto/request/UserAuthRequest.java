@@ -1,4 +1,4 @@
-package io.samwells.user_service.dto;
+package io.samwells.user_service.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
