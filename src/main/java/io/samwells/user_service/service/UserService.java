@@ -12,7 +12,7 @@ import io.samwells.user_service.repository.UserRepository;
 import io.samwells.user_service.entity.User;
 
 @Service
-public class UserService implements UserDetailsManager {
+public class UserService implements UserDetailsManager, ExtendedUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     
@@ -57,5 +57,10 @@ public class UserService implements UserDetailsManager {
     @Override
     public boolean userExists(String username) {
         return userRepository.findByEmail(username) != null;
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }
