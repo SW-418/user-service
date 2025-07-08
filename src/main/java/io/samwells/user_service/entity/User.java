@@ -26,7 +26,7 @@ public class User implements UserDetails {
 
     public User() {}
     
-   @PrePersist
+    @PrePersist
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();
         this.createdAt = now;
@@ -38,11 +38,15 @@ public class User implements UserDetails {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public long getId() { return id; }
+
     @Override
     public String getUsername() { return email; }
 
     @Override
     public String getPassword() { return password; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +62,10 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User(id=%d, email=%s, createdAt=%s, updatedAt=%s)", id, email, createdAt, updatedAt);
     }
 }
