@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private JWTUtils jwtUtils;
-    private ExtendedUserService extendedUserService;
+    private final JWTUtils jwtUtils;
+    private final ExtendedUserService extendedUserService;
     
     public JwtAuthenticationFilter(JWTUtils jwtUtils, ExtendedUserService extendedUserService) {
         this.jwtUtils = jwtUtils;
