@@ -2,7 +2,7 @@ import org.gradle.kotlin.dsl.testImplementation
 
 plugins {
 	java
-	id("org.springframework.boot") version "3.5.3"
+	id("org.springframework.boot") version "3.5.5"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("org.flywaydb.flyway") version "10.20.1"
 }
