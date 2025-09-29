@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk-jammy AS build
+FROM eclipse-temurin:25-jdk-jammy AS build
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY src ./src
 
 RUN ./gradlew build -x test
 
-FROM eclipse-temurin:21-jre-jammy AS run
+FROM eclipse-temurin:25-jre-jammy AS run
 
 WORKDIR /app
 
